@@ -38,3 +38,7 @@ spec:
       - ServerSideApply=true
       - ApplyOutOfSyncOnly=true
     syncInterval: 3m # Set the sync interval to 3 minutes
+
+7. deploy prometheus - terraform init/apply
+
+8. kubectl port-forward svc/prometheus-operated -n monitoring 9090:9090

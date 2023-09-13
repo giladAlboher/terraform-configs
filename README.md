@@ -6,8 +6,8 @@
 3. deploy argo-cd-setup - terraform init/apply
 
 4. port-forward the svc - kubectl port-forward svc/argocd-server -n argocd       8080:443
-5. kubectl get secrets argocd-initial-admin-secret -o yaml -n argoc
-   password
+5. kubectl get secrets argocd-initial-admin-secret -o yaml -n argocd
+   password:
    echo enter_the_code_here | base64 -D
    username:
    admin

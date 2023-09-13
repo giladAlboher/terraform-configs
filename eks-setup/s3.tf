@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "tf-state-bucket" {
-  bucket = "ziv-gilad-taskapp-bootcamp-project"
+  bucket = "ziv-gilad-trading-app-bootcamp-project-${formatdate("YYYY-MM-DD-HH-MM", timestamp())}"
 }
 
 resource "aws_s3_bucket_ownership_controls" "example" {

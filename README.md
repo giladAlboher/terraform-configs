@@ -42,3 +42,15 @@ spec:
 7. deploy prometheus - terraform init/apply
 
 8. kubectl port-forward svc/prometheus-operated -n monitoring 9090:9090
+
+8. kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/cloudwatch-namespace.yaml
+
+9. kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/cwagent/cwagent-serviceaccount.yaml 
+
+10. kubectl apply -f cwagent-configmap.yaml
+
+11. kubectl apply -f cwagent-daemonset.yaml
+
+12. grafana: kubectl port-forward svc/kube-prometheus-stackr-grafana 3000:80 -n monitoring
+
+13. kubectl get secrets -n monitoring kube-prometheus-stackr-grafana -o yaml

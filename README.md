@@ -53,4 +53,5 @@ spec:
 
 12. grafana: kubectl port-forward svc/kube-prometheus-stackr-grafana 3000:80 -n monitoring
 
-13. kubectl get secrets -n monitoring kube-prometheus-stackr-grafana -o yaml
+13. username: admin
+    password: prom-operator

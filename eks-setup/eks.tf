@@ -17,6 +17,8 @@ resource "aws_iam_role" "demo" {
 POLICY
 }
 
+
+
 resource "aws_iam_role_policy_attachment" "demo-AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
   role       = aws_iam_role.demo.name
@@ -66,7 +68,9 @@ resource "aws_eks_cluster" "demo" {
     endpoint_public_access = true
   }
 
-  depends_on = [aws_iam_role_policy_attachment.demo-AmazonEKSClusterPolicy]
+  depends_on = [
+    aws_iam_role_policy_attachment.demo-AmazonEKSClusterPolicy,
+  ]
 }
 
 
@@ -84,7 +88,7 @@ resource "aws_eks_node_group" "private-nodes" {
   instance_types = ["t3.large"]
 
   scaling_config {
-    desired_size = 1
+    desired_size = 2
     max_size     = 5
     min_size     = 0
   }
@@ -104,3 +108,4 @@ resource "aws_eks_node_group" "private-nodes" {
     aws_iam_role_policy_attachment.nodes-AmazonEC2ContainerRegistryReadOnly,
   ]
 }
+

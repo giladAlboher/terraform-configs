@@ -16,7 +16,12 @@ subjects:
   - kind: User # Change to "ServiceAccount" if needed
     name: Ziv Amram # Replace with your AWS user or IAM role ARN
     apiGroup: rbac.authorization.k8s.io
+  - kind: User 
+    name: Gilad Alboher 
+    apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role
   name: pod-viewer
   apiGroup: rbac.authorization.k8s.io
+
+

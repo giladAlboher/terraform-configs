@@ -1,6 +1,14 @@
-resource "aws_s3_bucket" "tf-state-bucket" {
-  bucket = "ziv-gilad-trading-app-bootcamp-project-${formatdate("YYYY-MM-DD-HH-MM", timestamp())}"
+resource "random_string" "bucket_suffix" {
+  length  = 8
+  special = false
+  upper   = false
+  number  = true
 }
+
+resource "aws_s3_bucket" "tf-state-bucket" {
+  bucket = "${formatdate("YYYY-MM-DD-HH-MM", timestamp())}-${random_string.bucket_suffix.result}"
+}
+
 
 resource "aws_s3_bucket_ownership_controls" "example" {
   bucket = aws_s3_bucket.tf-state-bucket.id

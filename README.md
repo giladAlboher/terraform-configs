@@ -43,10 +43,14 @@ spec:
 
 8. kubectl port-forward svc/prometheus-operated -n monitoring 9090:9090
 
-9. kubectl apply -f view-pods-role.yaml
+9. # kubectl apply -f view-pods-role.yaml not needed
 
 10. grafana: kubectl port-forward svc/kube-prometheus-stackr-grafana 3000:80 -n monitoring
 
 11. kubectl get secrets -n monitoring kube-prometheus-stackr-grafana -o yaml
     username: admin
     password: prom-operator
+
+12. if the loadbalancer is not workink, run this command:
+    kubectl port-forward svc/trading-app-svc 8081:8080 -n project
+

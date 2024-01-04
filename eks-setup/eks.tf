@@ -18,12 +18,13 @@ POLICY
 }
 
 
-
+# aws_iam_role_policy_attachment is used to attach the IAM policies to the IAM role created in the previous step.
 resource "aws_iam_role_policy_attachment" "demo-AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
   role       = aws_iam_role.demo.name
 }
 
+# aws iam role nodes is used to create the IAM role for the worker nodes.
 resource "aws_iam_role" "nodes" {
   name = "eks-node-group-nodes"
 
@@ -43,7 +44,7 @@ resource "aws_iam_role_policy_attachment" "nodes-AmazonEKSWorkerNodePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
   role       = aws_iam_role.nodes.name
 }
-
+# the nodes-AmazonEKS_CNI_Policy policy is used to allow the worker nodes to access the VPC resources.
 resource "aws_iam_role_policy_attachment" "nodes-AmazonEKS_CNI_Policy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
   role       = aws_iam_role.nodes.name
@@ -53,10 +54,13 @@ resource "aws_iam_role_policy_attachment" "nodes-AmazonEC2ContainerRegistryReadO
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
   role       = aws_iam_role.nodes.name
 }
+
+# aws_eks_cluster is used to create the EKS cluster.
 resource "aws_eks_cluster" "demo" {
   name     = var.cluster-name
   role_arn = aws_iam_role.demo.arn
 
+# The vpc_config block is used to specify the VPC configuration for the EKS cluster.
   vpc_config {
     subnet_ids = [
       aws_subnet.private-us-east-1a.id,

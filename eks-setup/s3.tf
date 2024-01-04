@@ -2,7 +2,7 @@ resource "random_string" "bucket_suffix" {
   length  = 8
   special = false
   upper   = false
-  number  = true
+  numeric = true
 }
 
 resource "aws_s3_bucket" "tf-state-bucket" {

@@ -17,7 +17,7 @@ This README provides a step-by-step guide for setting up an Amazon EKS (Elastic 
 
 3. Connect to the EKS cluster:
     ```bash
-    aws eks update-kubeconfig --region us-east-1 --name demo
+    aws eks update-kubeconfig --region us-east-1 --name eks-cluster-traking-project
     ```
 
 ## ArgoCD Setup
